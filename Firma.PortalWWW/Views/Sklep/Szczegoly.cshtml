@@ -1,0 +1,32 @@
+﻿@model Firma.Data.Data.Sklep.Towar
+@{
+    ViewData["Title"] = Model.Nazwa;
+    Layout = "~/Views/Shared/_sklepLayout.cshtml";
+}
+<br>
+<br>
+<br>
+@*<h2 class="header">Twoje rezerwacje</h2>*@
+<div class="col s12 m7">
+    <div class="card horizontal">
+        <div class="card-image">
+            <img src=@Model.FotoURL>
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <div>
+                    @Model.Nazwa
+                </div>
+                <div>
+                    @Model.Cena
+                </div>
+                <div>
+                    @Model.Opis
+                </div>
+                <div>
+                    @Html.ActionLink("DodajDoKoszyka", "DodajDoKoszyka", "Koszyk", new { id = Model.IdTowaru }, "")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

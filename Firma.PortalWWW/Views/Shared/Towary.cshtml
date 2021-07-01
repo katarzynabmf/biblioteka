@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Towar>
+
+<h3 class="center">Ostatnio dodane książki</h3>
+@{
+    var rowSize = 6;
+    var rowCount = (Model.Count() / rowSize);
+    // poniżej podział wszytskich produktów na wiersze
+    //   if ((Model.Count() / rowSize) % rowSize != 0)
+    //       rowCount = rowCount + 1;
+
+
+
+    //style="width:240px; height:310px"
+}
+
+
+
+@for (var i = 0; i < rowCount; i++)
+{
+<div class="row" style="display:flex">
+
+    @*@foreach (var item in Model.Skip(i * rowSize).Take(rowSize))*@
+
+        @foreach (var item in Model.TakeLast(6))
+        {
+            <div class="col">
+                <div class="card medium">
+                    <div class="card-image">
+                        <img src=@item.FotoURL>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            @item.Opis
+                        </p>
+                        <br /><br />
+                        <div class="center-align">
+                            <a class="black-text button__p default">Zarezerwuj</a>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+}

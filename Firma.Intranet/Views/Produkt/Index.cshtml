@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Produkt>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produkty</h1>
+<p>
+    <a asp-action="Create" class="btn btn-outline-dark" data-mdb-color="dark">Dodaj</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FotoURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRodzaju)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FotoURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRodzaju)
+            </td>
+            <td>
+                <div class="btn-group shadow-0" role="group" aria-label="Basic example">
+                    <a asp-action="Edit" asp-route-id="@item.IdProduktu" class="btn btn-outline-dark" data-mdb-color="dark">Edytuj</a> 
+                    <a asp-action="Details" asp-route-id="@item.IdProduktu" class="btn btn-outline-dark" data-mdb-color="dark">Szczegóły</a> 
+                    <a asp-action="Delete" asp-route-id="@item.IdProduktu" class="btn btn-outline-dark" data-mdb-color="dark">Usuń</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

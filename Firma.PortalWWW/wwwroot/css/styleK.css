@@ -1,0 +1,186 @@
+.nav_border {
+   
+    border: black;
+    border: solid;
+}
+.borderK {
+    border: solid;
+    
+    
+}
+.footer__col {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(23,22,22);
+}
+.link {
+    text-decoration:none;
+    text-decoration-color:black;
+	color:white;
+}
+
+nav .margin__right {
+    margin-right: 50px;
+}
+nav .logo {
+    margin-left: 50px;
+    color: white;
+
+}
+.button__p {
+    width: 50%;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 35px;
+    font-weight: 400;
+    border: 0.5px solid black;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    letter-spacing: .5px;
+    color: black;
+}
+.button__smaller {
+    width: 150px;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 15px;
+    font-weight: 400;
+    border: 0.5px solid black;
+    background-color: white;
+    color: black;
+    padding: 7px 14px;
+    cursor: pointer;
+}
+.default {
+    border-color: black;
+    color: black;
+}
+
+.default:hover {
+        background: #e7e7e7;
+}
+.icon-block {
+    padding: 0 15px;
+}
+
+    .icon-block .material-icons {
+        font-size: inherit;
+    }
+
+
+.slider .btn {
+    margin-top: 20px;
+    padding: 0 50px;
+    border-radius: 1%;
+}
+
+.section-follow .fa-4x {
+    margin: 5px 10px;
+}
+
+.section-contact {
+    margin-top: 100px;
+}
+
+.footer__text {
+    text-decoration: none;
+    color:white;
+
+}
+.zdjecie {
+    background: url(https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579__340.png);
+    height: 500px;
+    width:100%;
+}
+.karta__nowosci {
+    width:50%;
+    display:flex;
+  
+}
+
+.sk{
+	padding:0;
+}
+
+
+.navK {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+
+.srodek {
+	display: flex;
+justify-content: center;
+vertical-align: middle;
+align-items: center;
+}
+
+.a{
+	 color:white;
+
+}
+section {
+  margin: 10px;
+}
+.main {
+  padding: 2rem;
+  padding-top: calc(4rem + 74px)
+}
+.main .first-row, .main .second-row {
+  padding-bottom: 3rem;
+}
+.main .row .card {
+  height: 100%;
+}
+.card {
+  border: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, .1);
+  max-height: 100%;
+}
+.card-header {
+  background: white;
+  font-weight: 700;
+  padding: 20px;
+}
+.card-body {
+  padding: 0.5rem;
+  font-size: 12px;
+}
+#recently-posted .card img {
+  padding-top: 0.5rem;
+}
+.stats .card-text {
+  padding-top: 5px;
+  padding-left: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+}
+.img-container {
+  height: 120px;
+  width: 120px;
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-top: 20px;
+}
+.card-img-top {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+}
+.badge {
+  font-size: 18px;
+}
+.witaj {
+  font-size: 18px;
+  background-color: pink;
+}
+
+.opub {
+	width: 120px;
+}

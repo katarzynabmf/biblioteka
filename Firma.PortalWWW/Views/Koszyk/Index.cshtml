@@ -1,0 +1,30 @@
+﻿@model Firma.PortalWWW.Models.Biblioteka.DaneDoKoszyka
+@{
+    ViewData["Title"] = "Koszyk";
+    Layout = "~/Views/Shared/_KoszykLayout.cshtml";
+}
+<div>
+    Koszyk
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Towar</th>
+            <th>Cena</th>
+            <th>Ilość</th>
+            <th></th>
+            @foreach (var item in Model.ElementyKoszyka)
+            {
+            <tr>
+                <td>@item.Towar.Nazwa</td>
+           @*     <td>@item.Towar.Cena</td>*@
+                @*<td>@item.Ilosc</td>*@
+                <td></td>
+            </tr>
+        }
+            <div>
+                Razem:
+            </div>
+           @* <div>@Model.Razem</div>*@
+        </table>
+    </div>

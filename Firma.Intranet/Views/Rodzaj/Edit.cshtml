@@ -1,0 +1,39 @@
+﻿@model Firma.Data.Data.Sklep.Rodzaj
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edytuj</h1>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="IdRodzaju" />
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="Nazwa" class="control-label"></label>
+                <input asp-for="Nazwa" class="form-control" />
+                <span asp-validation-for="Nazwa" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="Opis" class="control-label"></label>
+                <input asp-for="Opis" class="form-control" />
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group btn-group shadow-0" role="group" aria-label="Basic example">
+                <input type="submit" value="Zapisz" class="btn btn-outline-dark" data-mdb-color="dark" />
+                <a asp-action="Index" class="btn btn-outline-dark" data-mdb-color="dark">Wróć</a>
+            </div>
+            </div>
+        </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

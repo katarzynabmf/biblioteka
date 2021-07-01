@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Rodzaj>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rodzaje</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-dark" data-mdb-color="dark">Dodaj</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            
+            <td>
+                <div class="btn-group shadow-0" role="group" aria-label="Basic example">
+                    <a class="btn btn-outline-dark" data-mdb-color="dark" asp-action="Edit" asp-route-id="@item.IdRodzaju">Edytuj</a>
+                    <a class="btn btn-outline-dark" data-mdb-color="dark" asp-action="Details" asp-route-id="@item.IdRodzaju">Szczegóły</a>
+                    <a class="btn btn-outline-dark" data-mdb-color="dark"asp-action="Delete" asp-route-id="@item.IdRodzaju">Usuń</a>
+                </div>
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

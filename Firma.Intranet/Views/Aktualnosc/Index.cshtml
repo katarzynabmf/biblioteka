@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Aktualnosc>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Aktualność</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-dark" data-mdb-color="dark">Dodaj</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkTytul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tytul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tresc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pozycja)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkTytul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tytul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tresc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pozycja)
+            </td>
+            <td>
+                <div class="btn-group shadow-0" role="group" aria-label="Basic example">
+                    <a asp-action="Edit" asp-route-id="@item.IdAktualnosci" class="btn btn-outline-dark" data-mdb-color="black">Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdAktualnosci" class="btn btn-outline-dark" data-mdb-color="black">Szczegóły</a>
+                    <!-- Button trigger modal -->
+                    <a asp-action="Delete" asp-route-id="@item.IdAktualnosci" class="btn btn-outline-dark" data-mdb-color="black" data-toggle="modal" data-target="#exampleModal">Usuń</a>
+
+                     @*Modal 
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Czy chcesz usunąć aktualność?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                   Czy na pewno chcesz usunąć tą aktualność?
+                                </div>
+                                <div class="modal-footer form-group btn-group shadow-0" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Nie, nie usuwaj</button>
+                                    <button type="button" class="btn btn-outline-dark">Tak, usuń
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Towar>
+@{
+    ViewData["Title"] = "Sklep";
+    Layout = "~/Views/Shared/_sklepLayout.cshtml";
+}
+
+    <div style="margin-top:60px">
+        <table>
+            <tbody>
+                <table>
+                    <tbody>
+                        @foreach (var towar in Model)
+                        {
+                            <ul class="collection">
+                                <li class="collection-item avatar">
+                                    <img src=@towar.FotoURL alt="" class="circle">
+                                    <p>
+                                        @towar.Opis <br>
+                                        @towar.Cena.ToString("0.00")<br/>
+                                    </p>
+                                    <a asp-action="Szczegoly" asp-route-id="@towar.IdTowaru" class="secondary-content">
+                                        <i class="btn btn-outline-light" data-mdb-color="dark">Szczegóły</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                        <table>
+                            <tbody>
+                            </tbody>
+        </table>
+</div>

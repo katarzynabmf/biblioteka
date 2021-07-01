@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Firma.PortalWWW</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous" />
+    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+ 
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/css/styleK.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+</head>
+<body>
+    <nav class="black " role="navigation">
+        @await Html.PartialAsync("Odnosniki", (IEnumerable<Firma.Data.Data.CMS.Strona>)ViewBag.ModelStrony)
+    </nav>
+
+
+    <div class="section sk" id="index-banner">
+        <div >
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <!-- Ostatnie publikacje -->
+    <section class="section section-blog scrollspy ">
+        @await Html.PartialAsync("Towary", (IEnumerable<Firma.Data.Data.Sklep.Towar>)ViewBag.ModelTowary)
+
+        @*<h3 class="center">Nasze ostatnie publikacje</h3>
+            <div class="row"  style="display:flex; margin-right:300px">
+                <div class="col s4 ">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://ecsmedia.pl/c/pozniej-b-iext68952603.jpg" >
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.
+                            </p>
+                        </div>
+                        <div class="card-action center-align">
+                            <a class="black-text button__p default">Dodaj do koszyka</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4 ">
+                    <div class="card ">
+                        <div class="card-image">
+                            <img src="https://ecsmedia.pl/c/pozniej-b-iext68952603.jpg">
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.
+                            </p>
+                        </div>
+                        <div class="card-action center-align">
+                            <a class="black-text button__p default">Dodaj do koszyka</a>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </section>
+    <!-- Media spolecznosciowe -->
+    <section class="section section-follow black darken-2 white-text">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <h4>Znajdziesz nas również</h4>
+                    <p>Obserwuj nas na mediach społecznościowych</p>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-facebook fa-4x"></i>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-twitter fa-4x"></i>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-linkedin fa-4x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Kontakt -->
+    <section id="contact" class="section section-contact scrollspy">
+        <div class="container">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input type="text" class="validate">
+                            <label for="icon_prefix">Imię</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                            <input type="email" class="validate">
+                            <label for="icon_email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">message</i>
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix">Wiadomość</label>
+                        </div>
+                    </div>
+                    <input type="submit" value="Wyślij" class="black btn-large">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stopka -->
+    <footer class="page-footer black text-white">
+        @await Html.PartialAsync("Parametry", (IEnumerable<Firma.Data.Data.CMS.Parametr>)ViewBag.ModelParametry)
+        @*<div class="container">
+                <div class="row">
+                    <div class="col l4 s12">
+                        E-mail<br>
+                        sklep@wydawnictwo.com<br>
+                        Telefon<br>
+                        +48 987 654 321
+                    </div>
+                    <div class="col l4 s12 black-text footer__text">
+                        <ul>
+                            <li class="link">@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                            <li class="link">@Html.ActionLink("Polityka prywatności", "Privacy", "Home")</li>
+                            <li class="link">@Html.ActionLink("O nas", "About", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col l4 s12 black-text footer__text">
+                        <ul lass="link">
+                            <li lass="link">
+                                <a footer__text href="https://www.facebook.com/" class="link">Facebook</a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/" class="link">Instagram</a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/" class="link">YouTube</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

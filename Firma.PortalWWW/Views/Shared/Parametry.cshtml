@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Parametr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col l4 s12">
+                <ul>
+                @foreach (var item in Model)
+                    if (item.Opis == "Footer1")
+                    {
+                        <li>@item.Nazwa</li>
+                        <li>@item.Wartosc</li>
+                    }
+                </ul>
+            </div>
+            <div class="col l4 s12 black-text footer__text">
+                <ul>
+                    <li class="white-text">@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                    <li class="white-text">@Html.ActionLink("Polityka prywatności", "Privacy", "Home")</li>
+                    <li class="white-text">@Html.ActionLink("O nas", "About", "Home")</li>
+                </ul>
+            </div>
+            <div class="col l4 s12 white-text footer__text">
+                <ul lass="link">
+                    @foreach (var item in Model)
+                        if (item.Opis == "Footer3")
+                        {<li><a footer__text href="@item.Wartosc" class="white-text">@item.Nazwa</a></li>
+                        }
+                </ul>
+            </div>
+        </div>
+    </div>
+
