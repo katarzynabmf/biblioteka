@@ -11,8 +11,8 @@ namespace Firma.PortalWWW.Controllers
 {
     public class KoszykController : Controller
     {
-        private readonly FirmaContext _context; // tak tworzymy połączenie z bazą danych
-        public KoszykController(FirmaContext context)
+        private readonly FirmaContextB _context; // tak tworzymy połączenie z bazą danych
+        public KoszykController(FirmaContextB context)
         {
             _context = context; // tu inicjalizujemy baze danych
         }
@@ -24,8 +24,9 @@ namespace Firma.PortalWWW.Controllers
             //do widoku można przekazać tylko 1 element!!!!!!! dlatego tworzymy klase ktora bedzie miala 2 elementy w sobie zeby moc je przakazac
             DaneDoKoszyka daneDoKoszyka = new DaneDoKoszyka
             {
-                ElementyKoszyka = await koszyk.GetElementyKoszyka(),
-               // Razem = await koszyk.GetRazem()
+                ElementyKoszykaB = await koszyk.GetElementyKoszyka(),
+                // Razem = await koszyk.GetRazem()
+                Rezerwacja = await koszyk.GetRezerwacja()
             };
             //przekazujemy dane do koszyka złozone z dwoch elementów do widoku
             return View(daneDoKoszyka);
@@ -35,7 +36,7 @@ namespace Firma.PortalWWW.Controllers
         public async Task<ActionResult> DodajDoKoszyka(int id)
         {
             KoszykB koszyk = new KoszykB(_context, this.HttpContext);
-            koszyk.DodajDoKoszyka(await _context.Towar.FindAsync(id));
+            koszyk.DodajDoKoszyka(await _context.Produkt2.FindAsync(id));
             //po dodaniu towaru do koszyka przechodze do tego koszyka, czyli do Index, który wyswietli koszyk
             return RedirectToAction("Index");//to jest przejscie do widoku indeks
         }

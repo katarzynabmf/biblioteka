@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Firma.Data.Migrations
 {
-    [DbContext(typeof(FirmaContext))]
-    [Migration("20210630210431_addAColumnInProdukt")]
-    partial class addAColumnInProdukt
+    [DbContext(typeof(FirmaContextB))]
+    [Migration("20210701201643_B1")]
+    partial class B1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,6 +167,44 @@ namespace Firma.Data.Migrations
                     b.ToTable("Produkt");
                 });
 
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.Property<int>("IdProduktu2")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FotoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RodzajIdRodzaju")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdProduktu2");
+
+                    b.HasIndex("RodzajIdRodzaju");
+
+                    b.ToTable("Produkt2");
+                });
+
             modelBuilder.Entity("Firma.Data.Data.Sklep.Rodzaj", b =>
                 {
                     b.Property<int>("IdRodzaju")
@@ -236,6 +274,13 @@ namespace Firma.Data.Migrations
                 {
                     b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
                         .WithMany("Produkt")
+                        .HasForeignKey("RodzajIdRodzaju");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
+                        .WithMany()
                         .HasForeignKey("RodzajIdRodzaju");
                 });
 

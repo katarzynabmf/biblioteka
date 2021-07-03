@@ -12,10 +12,10 @@ namespace Firma.PortalWWW.Models.BusinessLogic
     public class KoszykB
     {
         //to jest połączenie z bazą danych
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
         private string IdSesjiKoszyka; //tu będzie przechowywany identyfikator przeglądarki, któa dodaje elementy koszyka do przeglądarki
 
-        public KoszykB(FirmaContext context, HttpContext httpContext)
+        public KoszykB(FirmaContextB context, HttpContext httpContext)
         {
             _context = context;
             IdSesjiKoszyka = GetIdSesjiKoszyka(httpContext); //this nie musi być
@@ -43,49 +43,63 @@ namespace Firma.PortalWWW.Models.BusinessLogic
             return httpContext.Session.GetString("IdSesjiKoszyka").ToString();
         }
         //to jest funkcja, która dodaje nowy towar danego użytkownika do koszyka
-        public void DodajDoKoszyka(Towar towar)
+        public void DodajDoKoszyka(Produkt2 towar)
         {
             //najpierw sprawdzamy czy w koszyku tego użytkownika jest już ten towar
-            var elementKoszyka = _context.ElementKoszyka.Where(e => e.IdSesjiKoszyka == IdSesjiKoszyka && e.IdTowaru == towar.IdTowaru).FirstOrDefault();
+            var elementKoszykaB = _context.ElementKoszykaB.Where(e => e.IdSesjiKoszyka == IdSesjiKoszyka && e.IdProduktu2 == towar.IdProduktu2).FirstOrDefault();
             //jeżeli w koszyku daengo użytkownika nie ma tego towaru 
-            if (elementKoszyka == null)
+            if (elementKoszykaB == null)
             {
-                elementKoszyka = new ElementKoszyka()
+                elementKoszykaB = new ElementKoszykaB()
                 {
                     IdSesjiKoszyka = this.IdSesjiKoszyka,//tu daję, że ten towar jest towarem tego użytkownika
-                    IdTowaru = towar.IdTowaru,
-                    Towar = _context.Towar.Find(towar.IdTowaru),
-                 //   Ilosc = 1,
+                    IdProduktu2 = towar.IdProduktu2,
+                    Produkt = _context.Produkt2.Find(towar.IdProduktu2),
+                    Ilosc = 1,
                     DataUtworzenia = DateTime.Now
 
                 };
                 //dodajemy nowy element do kolekcji elementó
-                _context.ElementKoszyka.Add(elementKoszyka);
+                _context.ElementKoszykaB.Add(elementKoszykaB);
             }
             else
             {
                 //jeżeli dany towar jest w koszyku danego uzytkownika to zwiększamy jego ilość o 1
-             //   elementKoszyka.Ilosc++;
+                elementKoszykaB.Ilosc++;
             }
             //zapisujemy zmiany w bazie danych
             _context.SaveChanges();
         }
         //to jest metoda która pobiera elementy koszyka danego użytkownika
-        public async Task<List<ElementKoszyka>> GetElementyKoszyka()
+        public async Task<List<ElementKoszykaB>> GetElementyKoszyka()
         {
-            return await _context.ElementKoszyka.Where(e => e.IdSesjiKoszyka == IdSesjiKoszyka).Include(e => e.Towar).ToListAsync();
+            return await _context.ElementKoszykaB.Where(e => e.IdSesjiKoszyka == IdSesjiKoszyka).Include(e => e.Produkt).ToListAsync();
         }
-        //funkcja oblicza wartosc koszyka danego uzytkownika
-        //public async Task<decimal> GetRazem()
-        //{
-        //    //to jest lista wartości wszytskicj towarów danego uzytkownika
-        //    var suma =
-        //        (
-        //            from element in _context.ElementKoszyka //dla kazdego elementu koszyka
-        //            where element.IdSesjiKoszyka == this.IdSesjiKoszyka //ktory nalezy do danego uzytkownika
-        //        //    select (decimal?)element.Ilosc * element.Towar.Cena //mnożę ilosc razy cenę
-        //     //   ).SumAsync(); //i sumuję
-        //    return await suma ?? decimal.Zero; //i zwracam albo tą sumę albo 0 jeżeli nie będzie tej sumy
-        //}
+      //  funkcja oblicza wartosc koszyka danego uzytkownika
+        public async Task<string> GetRazem()
+        {
+            //to jest lista wartości wszytskicj towarów danego uzytkownika
+            //var suma =
+            //    (
+            //        from element in _context.ElementKoszyka //dla kazdego elementu koszyka
+            //        where element.IdSesjiKoszyka == this.IdSesjiKoszyka //ktory nalezy do danego uzytkownika
+            //        select (decimal?)element.Ilosc * element.Towar.Cena //mnożę ilosc razy cenę
+            //       ).SumAsync(); //i sumuję
+            //return await suma ?? decimal.Zero; //i zwracam albo tą sumę albo 0 jeżeli nie będzie tej sumy
+            return "Numer rezerwacji do biblioteki";
+           }
+        public async Task<string> GetRezerwacja()
+        {
+            //to jest lista wartości wszytskicj towarów danego uzytkownika
+            //var suma =
+            //    (
+            //        from element in _context.ElementKoszyka //dla kazdego elementu koszyka
+            //        where element.IdSesjiKoszyka == this.IdSesjiKoszyka //ktory nalezy do danego uzytkownika
+            //        select (decimal?)element.Ilosc * element.Towar.Cena //mnożę ilosc razy cenę
+            //       ).SumAsync(); //i sumuję
+            //return await suma ?? decimal.Zero; //i zwracam albo tą sumę albo 0 jeżeli nie będzie tej sumy
+            var elementyKoszyka = _context.ElementKoszyka.Where(ek => ek.IdSesjiKoszyka == IdSesjiKoszyka).ToList();
+            return $"Numer rezerwacji do biblioteki {DateTime.Now.ToShortDateString()} {string.Join(" ", elementyKoszyka.Select(ek => ek.IdTowaru))}";
+        }
     }
 }

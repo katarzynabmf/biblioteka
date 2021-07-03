@@ -12,9 +12,9 @@ namespace Firma.Intranet.Controllers
 {
     public class ProduktController : Controller
     {
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
 
-        public ProduktController(FirmaContext context)
+        public ProduktController(FirmaContextB context)
         {
             _context = context;
         }

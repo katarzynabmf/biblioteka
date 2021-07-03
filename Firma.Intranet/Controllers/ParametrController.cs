@@ -12,9 +12,9 @@ namespace Firma.Intranet.Controllers
 {
     public class ParametrController : Controller
     {
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
 
-        public ParametrController(FirmaContext context)
+        public ParametrController(FirmaContextB context)
         {
             _context = context;
         }

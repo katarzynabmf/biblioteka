@@ -9,22 +9,26 @@
 <div>
     <table>
         <tr>
-            <th>Towar</th>
-            <th>Cena</th>
-            <th>Ilość</th>
+            <th>Tytul</th>
+            <th>Autor</th>
+            <th>Wydawnictwo</th>
             <th></th>
-            @foreach (var item in Model.ElementyKoszyka)
+            @foreach (var item in Model.ElementyKoszykaB)
             {
-            <tr>
-                <td>@item.Towar.Nazwa</td>
-           @*     <td>@item.Towar.Cena</td>*@
-                @*<td>@item.Ilosc</td>*@
-                <td></td>
-            </tr>
+        <tr>
+            <td>@item.Produkt.Tytul</td>
+            <td>@item.Produkt.Autor</td>
+            <td>@item.Produkt.Wydawnictwo</td>
+            @*     <td>@item.Towar.Cena</td>*@
+            @*<td>@item.Ilosc</td>*@
+            <td></td>
+        </tr>
         }
+            <br />
+            <br />
             <div>
-                Razem:
+                <b>Rezerwacja numer:</b>  
             </div>
-           @* <div>@Model.Razem</div>*@
+            <div>@Model.Rezerwacja</div>
         </table>
     </div>

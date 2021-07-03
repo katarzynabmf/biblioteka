@@ -3,7 +3,6 @@
     ViewData["Title"] = Model.Nazwa;
     Layout = "~/Views/Shared/_sklepLayout.cshtml";
 }
-
 <br>
 <br>
 <br>
@@ -61,7 +60,10 @@
                             <td>
                             </td>
                             <td>
-                                <button class="btn pink darken-1"> @Html.ActionLink("Dodaj do koszyka", "DodajDoKoszyka", "Koszyk", new { id = Model.IdProduktu2 }, "")</button>
+
+                                <button class="btn pink darken-1 white-text" data-mdb-color="dark"> @Html.ActionLink("Dodaj do koszyka", "DodajDoKoszyka", "Koszyk", new { id = Model.IdProduktu2 }, "")</button>
+
+
                             </td>
                         </tr>
                     </tbody>
@@ -69,28 +71,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-            <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-                <li class="tab col s3"><a href="#test1">Test 1</a></li>
-                <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-                <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-                <li class="tab col s3"><a href="#test4">Test 4</a></li>
-            </ul>
-        </div>
-        <div id="test1" class="col s12">Test 1</div>
-        <div id="test2" class="col s12">Test 2</div>
-        <div id="test3" class="col s12">Test 3</div>
-        <div id="test4" class="col s12">Test 4</div>
-    </div>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
-    <script src="~/lib/materialize/js/materialize.min.js" type="text/javascript"></script>
-    <script>
-        M.AutoInit();
-            //var el = document.querySelector('.tabs');
-            //var instance = M.Tabs.init(el, {});
-    </script>
 </div>

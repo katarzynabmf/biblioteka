@@ -7,12 +7,29 @@
         <li class="border border-dark black-text">@Html.ActionLink("Strona główna", "Index", "Home")</li>
         @foreach (var item in Model)
         {
+            @*<li>
+                @Html.ActionLink(item.Tytul, "Index", "Home", new { id = item.IdStrony }, null)
+            </li>*@
             <li>
                 @Html.ActionLink(item.Tytul, "Index", "Home", new { id = item.IdStrony }, null)
             </li>
         }
+        @*<li>
+            @Html.ActionLink("O nas", "About", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("Polityka prywatności", "Privacy", "Home")
+        </li>*@
+        <li>
+            @Html.ActionLink("Aktualności1!!!!", "Aktualnosci", "Shared")
+        </li>
+
         <li>
             @Html.ActionLink("Koszyk", "Index", "Sklep")
+        </li>
+
+        <li>
+            @Html.ActionLink("Polityka prywatności", "Privacy", "Home")
         </li>
 
     </ul>

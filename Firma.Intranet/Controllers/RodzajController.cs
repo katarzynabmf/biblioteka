@@ -12,9 +12,9 @@ namespace Firma.Intranet.Controllers
 {
     public class RodzajController : Controller
     {
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
 
-        public RodzajController(FirmaContext context)
+        public RodzajController(FirmaContextB context)
         {
             _context = context;
         }

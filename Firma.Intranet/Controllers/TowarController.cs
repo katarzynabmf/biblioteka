@@ -12,9 +12,9 @@ namespace Firma.Intranet.Controllers
 {
     public class TowarController : Controller
     {
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
 
-        public TowarController(FirmaContext context)
+        public TowarController(FirmaContextB context)
         {
             _context = context;
         }

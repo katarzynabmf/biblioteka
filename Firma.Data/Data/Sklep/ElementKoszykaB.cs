@@ -6,13 +6,13 @@ using System.Text;
 namespace Firma.Data.Data.Sklep
 {
     //w tej klasie będą przechowywane wszytskie elementy koszyka wszytskich użytkowników
-    public class ElementKoszyka
+    public class ElementKoszykaB
     {
         [Key]
         public int IdElementuKoszyka { get; set; }
         public string IdSesjiKoszyka { get; set; } // to jest identyfikator przeglądarki
-        public int IdTowaru { get; set; }
-        public virtual Towar Towar { get; set; }
+        public int IdProduktu2 { get; set; }
+        public virtual Produkt2 Produkt { get; set; }
         public int Ilosc { get; set; }
         public DateTime DataUtworzenia { get; set; }
     }

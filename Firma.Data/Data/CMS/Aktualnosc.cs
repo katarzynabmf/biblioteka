@@ -17,7 +17,7 @@ namespace Firma.Data.Data.CMS
         public string LinkTytul { get; set; }
 
         [Required(ErrorMessage = "Tytuł aktualnosci jest wymagany")] //oznacza to, że poniższe polejest wymagane , a jak się go nie wpisze pojawi się ErrorMessage
-        [MaxLength(50, ErrorMessage = "Tytuł powinien mieć max 50 znaków")]//określenie maksymalnej liczby znaków
+        [MaxLength(80, ErrorMessage = "Tytuł powinien mieć max 50 znaków")]//określenie maksymalnej liczby znaków
         [Display(Name = "Tytuł")]//tu określamy jak pole będzie się nazywało na widoku
         public string Tytul { get; set; }
 
@@ -28,5 +28,10 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Pozycja wyświetlania")]
         [Required(ErrorMessage = "Wpisz pozycję wyświetlania")] //oznacza to, że poniższe polejest wymagane , a jak się go nie wpisze pojawi się ErrorMessage
         public int Pozycja { get; set; }
+
+        [Display(Name = "Wybierz zdjęcie")]
+        public string FotoURL { get; set; }
+
+        public DateTime DataAktualna { get; set; }
     }
 }

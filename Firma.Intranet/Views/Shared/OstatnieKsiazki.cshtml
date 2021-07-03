@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Firma.Data.Data.Sklep.Towar>
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Produkt2>
 @{
     var rowCount = Model.Count();
 }
@@ -9,7 +9,7 @@
                 <div class="row g-0">
                     <div class="col-md-12">
                         <div class="card-body">
-                        <h6 class="card-title">@item.Opis</h6>
+                        <h6 class="card-title">@item.Tytul</h6>
                         <div class="card-image">
                             <img src=@item.FotoURL>
                             <p class="card-text"><small class="text-muted">Dodano 3 dni temu</small></p>

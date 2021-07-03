@@ -10,7 +10,8 @@ namespace Firma.PortalWWW.Models.Biblioteka
     //żeby koszyk dobrze działał muszą być w nim elementy zamówione oraz wartość (razem) tych elementów 
     public class DaneDoKoszyka
     {
-        public List<ElementKoszyka> ElementyKoszyka { get; set; }
+        public List<ElementKoszykaB> ElementyKoszykaB { get; set; }
         public decimal Razem { get; set; }
+        public string Rezerwacja { get; set; }
     }
 }

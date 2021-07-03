@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Firma.Data.Data.Sklep;
 using Firma.Data.Data;
-using Firma.Data.Data.CMS;
 
 namespace Firma.Intranet.Controllers
 {
-    public class AktualnoscController : Controller
+    public class Produkt2Controller : Controller
     {
         private readonly FirmaContextB _context;
 
-        public AktualnoscController(FirmaContextB context)
+        public Produkt2Controller(FirmaContextB context)
         {
             _context = context;
         }
 
-        // GET: Aktualnosc
+        // GET: Produkt2
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Aktualnosc.ToListAsync());
+            return View(await _context.Produkt2.ToListAsync());
         }
 
-        // GET: Aktualnosc/Details/5
+        // GET: Produkt2/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +30,39 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var aktualnosc = await _context.Aktualnosc
-                .FirstOrDefaultAsync(m => m.IdAktualnosci == id);
-            if (aktualnosc == null)
+            var produkt2 = await _context.Produkt2
+                .FirstOrDefaultAsync(m => m.IdProduktu2 == id);
+            if (produkt2 == null)
             {
                 return NotFound();
             }
 
-            return View(aktualnosc);
+            return View(produkt2);
         }
 
-        // GET: Aktualnosc/Create
+        // GET: Produkt2/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Aktualnosc/Create
+        // POST: Produkt2/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Pozycja,FotoURL, DataAktualna")] Aktualnosc aktualnosc)
+        public async Task<IActionResult> Create(Produkt2 produkt2)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(aktualnosc);
+                _context.Add(produkt2);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(aktualnosc);
+            return View(produkt2);
         }
 
-        // GET: Aktualnosc/Edit/5
+        // GET: Produkt2/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +70,22 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var aktualnosc = await _context.Aktualnosc.FindAsync(id);
-            if (aktualnosc == null)
+            var produkt2 = await _context.Produkt2.FindAsync(id);
+            if (produkt2 == null)
             {
                 return NotFound();
             }
-            return View(aktualnosc);
+            return View(produkt2);
         }
 
-        // POST: Aktualnosc/Edit/5
+        // POST: Produkt2/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Pozycja,FotoURL, DataAktualna")] Aktualnosc aktualnosc)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduktu2,Kod,Nazwa,Autor,Wydawnictwo,Ilosc,Tytul,Opis,FotoURL,IdRodzaju")] Produkt2 produkt2)
         {
-            if (id != aktualnosc.IdAktualnosci)
+            if (id != produkt2.IdProduktu2)
             {
                 return NotFound();
             }
@@ -97,12 +94,12 @@ namespace Firma.Intranet.Controllers
             {
                 try
                 {
-                    _context.Update(aktualnosc);
+                    _context.Update(produkt2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AktualnoscExists(aktualnosc.IdAktualnosci))
+                    if (!Produkt2Exists(produkt2.IdProduktu2))
                     {
                         return NotFound();
                     }
@@ -113,10 +110,10 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(aktualnosc);
+            return View(produkt2);
         }
 
-        // GET: Aktualnosc/Delete/5
+        // GET: Produkt2/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +121,30 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
-            var aktualnosc = await _context.Aktualnosc
-                .FirstOrDefaultAsync(m => m.IdAktualnosci == id);
-            if (aktualnosc == null)
+            var produkt2 = await _context.Produkt2
+                .FirstOrDefaultAsync(m => m.IdProduktu2 == id);
+            if (produkt2 == null)
             {
                 return NotFound();
             }
 
-            return View(aktualnosc);
+            return View(produkt2);
         }
 
-        // POST: Aktualnosc/Delete/5
+        // POST: Produkt2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var aktualnosc = await _context.Aktualnosc.FindAsync(id);
-            _context.Aktualnosc.Remove(aktualnosc);
+            var produkt2 = await _context.Produkt2.FindAsync(id);
+            _context.Produkt2.Remove(produkt2);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AktualnoscExists(int id)
+        private bool Produkt2Exists(int id)
         {
-            return _context.Aktualnosc.Any(e => e.IdAktualnosci == id);
+            return _context.Produkt2.Any(e => e.IdProduktu2 == id);
         }
     }
 }

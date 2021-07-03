@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Firma.PortalWWW.Models;
 using Firma.Data.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Firma.PortalWWW.Controllers
 {
     public class HomeController : Controller
     {
         //to jest obiekt reprezentujący całą bazę danych
-        private readonly FirmaContext _context;       
+        private readonly FirmaContextB _context;       
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(FirmaContext context)
+        public HomeController(FirmaContextB context)
         {
             _context = context; // tu inicjalizujemy bazę danych
         }
@@ -47,6 +48,15 @@ namespace Firma.PortalWWW.Controllers
                 orderby towar.IdTowaru // posortowanej względem pozycji
                 select towar // wybieramy stronę
                 ).ToList();
+            ViewBag.ModelProdukty2 =
+                (
+                from produkt in _context.Produkt2 // dla każdej strony z bazy danych stron
+                orderby produkt.IdProduktu2 // posortowanej względem pozycji
+                select produkt // wybieramy stronę
+                ).ToList();
+
+
+
             //jeżeli portal ładuje się pierwszy raz, to otwieramy stronę z bazy
             if (id == null)
                 id = _context.Strona.First().IdStrony;
@@ -79,5 +89,14 @@ namespace Firma.PortalWWW.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //funkcja zwraca do widoku towar o id danym jako parametr
+
+        public async Task<IActionResult> Szczegoly(int id)
+        {
+            ViewBag.Rodzaje = await _context.Rodzaj.ToListAsync();
+            return View("Szczegoly",await _context.Produkt2.Where(t => t.IdProduktu2 == id).FirstOrDefaultAsync());
+        }
+
     }
 }

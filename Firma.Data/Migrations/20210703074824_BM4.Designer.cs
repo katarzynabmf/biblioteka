@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Firma.Data.Migrations
 {
-    [DbContext(typeof(FirmaContext))]
-    [Migration("20210630211023_dropColumn")]
-    partial class dropColumn
+    [DbContext(typeof(FirmaContextB))]
+    [Migration("20210703074824_BM4")]
+    partial class BM4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,12 @@ namespace Firma.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DataAktualna")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FotoURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LinkTytul")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -41,8 +47,8 @@ namespace Firma.Data.Migrations
 
                     b.Property<string>("Tytul")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
 
                     b.HasKey("IdAktualnosci");
 
@@ -116,6 +122,9 @@ namespace Firma.Data.Migrations
                     b.Property<int>("IdTowaru")
                         .HasColumnType("int");
 
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TowarIdTowaru")
                         .HasColumnType("int");
 
@@ -124,6 +133,35 @@ namespace Firma.Data.Migrations
                     b.HasIndex("TowarIdTowaru");
 
                     b.ToTable("ElementKoszyka");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.ElementKoszykaB", b =>
+                {
+                    b.Property<int>("IdElementuKoszyka")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DataUtworzenia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdProduktu2")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdSesjiKoszyka")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProduktIdProduktu2")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdElementuKoszyka");
+
+                    b.HasIndex("ProduktIdProduktu2");
+
+                    b.ToTable("ElementKoszykaB");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt", b =>
@@ -165,6 +203,54 @@ namespace Firma.Data.Migrations
                     b.HasIndex("RodzajIdRodzaju");
 
                     b.ToTable("Produkt");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.Property<int>("IdProduktu2")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Autor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FotoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RodzajIdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tytul")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wydawnictwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdProduktu2");
+
+                    b.HasIndex("RodzajIdRodzaju");
+
+                    b.ToTable("Produkt2");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Rodzaj", b =>
@@ -232,10 +318,24 @@ namespace Firma.Data.Migrations
                         .HasForeignKey("TowarIdTowaru");
                 });
 
+            modelBuilder.Entity("Firma.Data.Data.Sklep.ElementKoszykaB", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Produkt2", "Produkt")
+                        .WithMany()
+                        .HasForeignKey("ProduktIdProduktu2");
+                });
+
             modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt", b =>
                 {
                     b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
                         .WithMany("Produkt")
+                        .HasForeignKey("RodzajIdRodzaju");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
+                        .WithMany()
                         .HasForeignKey("RodzajIdRodzaju");
                 });
 

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Firma.Data.Data
 {
-    public class FirmaContext : DbContext
+    public class FirmaContextB : DbContext
     {
-        public FirmaContext(DbContextOptions<FirmaContext> options)
+        public FirmaContextB(DbContextOptions<FirmaContextB> options)
             : base(options)
         {
         }
@@ -22,10 +22,14 @@ namespace Firma.Data.Data
 
         public DbSet<Produkt> Produkt { get; set; }
 
+        public DbSet<Produkt2> Produkt2 { get; set; }
+
         public DbSet<Rodzaj> Rodzaj { get; set; }
 
         public DbSet<Towar> Towar { get; set; }
 
         public DbSet<ElementKoszyka> ElementKoszyka { get; set; }
+
+        public DbSet<ElementKoszykaB> ElementKoszykaB { get; set; }
     }
 }

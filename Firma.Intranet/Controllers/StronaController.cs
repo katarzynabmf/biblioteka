@@ -12,9 +12,9 @@ namespace Firma.Intranet.Controllers
 {
     public class StronaController : Controller
     {
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
 
-        public StronaController(FirmaContext context)
+        public StronaController(FirmaContextB context)
         {
             _context = context;
         }

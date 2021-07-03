@@ -13,14 +13,14 @@ namespace Firma.Intranet.Controllers
     public class HomeController : Controller
     {
         //to jest obiekt reprezentujący całą bazę danych
-        private readonly FirmaContext _context;
+        private readonly FirmaContextB _context;
         private readonly ILogger<HomeController> _logger;
 
        // public HomeController(ILogger<HomeController> logger)
      //   {
           //  _logger = logger;
      //   }
-    public HomeController(FirmaContext context)
+    public HomeController(FirmaContextB context)
 
         {
             _context = context;
@@ -35,6 +35,12 @@ namespace Firma.Intranet.Controllers
                orderby towar.IdTowaru // posortowanej względem pozycji
                select towar // wybieramy stronę
                ).ToList();
+            ViewBag.ModelProdukty2 =
+             (
+             from towar in _context.Produkt2 // dla każdej strony z bazy danych stron
+               orderby towar.IdProduktu2 // posortowanej względem pozycji
+               select towar // wybieramy stronę
+             ).ToList();
             //jeżeli portal ładuje się pierwszy raz, to otwieramy stronę z bazy
             if (id == null)
                 id = _context.Strona.First().IdStrony;

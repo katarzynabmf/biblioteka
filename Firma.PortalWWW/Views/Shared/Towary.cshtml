@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Firma.Data.Data.Sklep.Towar>
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Produkt2>
 
 <h3 class="center">Ostatnio dodane książki</h3>
 @{
@@ -15,26 +15,29 @@
 
 
 
-@for (var i = 0; i < rowCount; i++)
+@for (var i = 0; i < 1; i++)
 {
-<div class="row" style="display:flex">
+<div class="row g-0">
 
     @*@foreach (var item in Model.Skip(i * rowSize).Take(rowSize))*@
 
         @foreach (var item in Model.TakeLast(6))
         {
-            <div class="col">
+            <div class="col s12 m2">
                 <div class="card medium">
                     <div class="card-image">
                         <img src=@item.FotoURL>
                     </div>
                     <div class="card-content">
                         <p>
-                            @item.Opis
+                            @item.Tytul
                         </p>
-                        <br /><br />
-                        <div class="center-align">
-                            <a class="black-text button__p default">Zarezerwuj</a>
+                        <p>
+                            @item.Autor
+                        </p>
+                        <div class=" card-action center-align">
+                            <a class="btn pink darken-1" asp-action="Szczegoly" asp-route-id="@item.IdProduktu2">
+                            Szczegóły</a>
                         </div>
                         <br />
                     </div>

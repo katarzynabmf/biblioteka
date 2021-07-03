@@ -26,8 +26,8 @@ namespace Firma.PortalWWW
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<FirmaContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("FirmaContext")));
+            services.AddDbContext<FirmaContextB>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("FirmaContextB")));
 
             //to dodac
             services.AddDistributedMemoryCache();

@@ -10,64 +10,32 @@
           href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous" />
-    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
- 
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="~/css/site.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="~/css/styleK.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 <body>
-    <nav class="black " role="navigation">
+    <nav class="black" role="navigation">
         @await Html.PartialAsync("Odnosniki", (IEnumerable<Firma.Data.Data.CMS.Strona>)ViewBag.ModelStrony)
     </nav>
 
 
     <div class="section sk" id="index-banner">
-        <div >
+        <div>
             @RenderBody()
         </div>
     </div>
-
-
     <!-- Ostatnie publikacje -->
     <section class="section section-blog scrollspy ">
-        @await Html.PartialAsync("Towary", (IEnumerable<Firma.Data.Data.Sklep.Towar>)ViewBag.ModelTowary)
-
-        @*<h3 class="center">Nasze ostatnie publikacje</h3>
-            <div class="row"  style="display:flex; margin-right:300px">
-                <div class="col s4 ">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="https://ecsmedia.pl/c/pozniej-b-iext68952603.jpg" >
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.
-                            </p>
-                        </div>
-                        <div class="card-action center-align">
-                            <a class="black-text button__p default">Dodaj do koszyka</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s4 ">
-                    <div class="card ">
-                        <div class="card-image">
-                            <img src="https://ecsmedia.pl/c/pozniej-b-iext68952603.jpg">
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.
-                            </p>
-                        </div>
-                        <div class="card-action center-align">
-                            <a class="black-text button__p default">Dodaj do koszyka</a>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
+        @await Html.PartialAsync("Aktualnosci", (IEnumerable<Firma.Data.Data.CMS.Aktualnosc>)ViewBag.ModelAktualnosci)
+    </section>
+    <!-- Ostatnie publikacje -->
+    <section class="section section-blog scrollspy ">
+        @await Html.PartialAsync("Towary", (IEnumerable<Firma.Data.Data.Sklep.Produkt2>)ViewBag.ModelProdukty2)
     </section>
     <!-- Media spolecznosciowe -->
     <section class="section section-follow black darken-2 white-text">
@@ -161,14 +129,12 @@
             </div>
         </div>
     </footer>
-
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/materialize/js/materialize.js" type="text/javascript"></script>
+    <script src="~/js/init.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="~/js/site.js" asp-append-version="true" type="text/javascript"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

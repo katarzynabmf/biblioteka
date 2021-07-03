@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Firma.Data.Migrations
 {
-    [DbContext(typeof(FirmaContext))]
-    [Migration("20210422182443_M1")]
-    partial class M1
+    [DbContext(typeof(FirmaContextB))]
+    [Migration("20210702171747_BM1")]
+    partial class BM1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,9 +100,147 @@ namespace Firma.Data.Migrations
                     b.ToTable("Strona");
                 });
 
+            modelBuilder.Entity("Firma.Data.Data.Sklep.ElementKoszyka", b =>
+                {
+                    b.Property<int>("IdElementuKoszyka")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DataUtworzenia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdSesjiKoszyka")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdTowaru")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TowarIdTowaru")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdElementuKoszyka");
+
+                    b.HasIndex("TowarIdTowaru");
+
+                    b.ToTable("ElementKoszyka");
+                });
+
             modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt", b =>
                 {
                     b.Property<int>("IdProduktu")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Cena")
+                        .HasColumnType("money");
+
+                    b.Property<string>("FotoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RodzajIdRodzaju")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdProduktu");
+
+                    b.HasIndex("RodzajIdRodzaju");
+
+                    b.ToTable("Produkt");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.Property<int>("IdProduktu2")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Autor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FotoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ilosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RodzajIdRodzaju")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tytul")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wydawnictwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdProduktu2");
+
+                    b.HasIndex("RodzajIdRodzaju");
+
+                    b.ToTable("Produkt2");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Rodzaj", b =>
+                {
+                    b.Property<int>("IdRodzaju")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdRodzaju");
+
+                    b.ToTable("Rodzaj");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Towar", b =>
+                {
+                    b.Property<int>("IdTowaru")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -131,37 +269,38 @@ namespace Firma.Data.Migrations
                     b.Property<int?>("RodzajIdRodzaju")
                         .HasColumnType("int");
 
-                    b.HasKey("IdProduktu");
+                    b.HasKey("IdTowaru");
 
                     b.HasIndex("RodzajIdRodzaju");
 
-                    b.ToTable("Produkt");
+                    b.ToTable("Towar");
                 });
 
-            modelBuilder.Entity("Firma.Data.Data.Sklep.Rodzaj", b =>
+            modelBuilder.Entity("Firma.Data.Data.Sklep.ElementKoszyka", b =>
                 {
-                    b.Property<int>("IdRodzaju")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nazwa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("Opis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdRodzaju");
-
-                    b.ToTable("Rodzaj");
+                    b.HasOne("Firma.Data.Data.Sklep.Towar", "Towar")
+                        .WithMany()
+                        .HasForeignKey("TowarIdTowaru");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt", b =>
                 {
                     b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
                         .WithMany("Produkt")
+                        .HasForeignKey("RodzajIdRodzaju");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Produkt2", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
+                        .WithMany()
+                        .HasForeignKey("RodzajIdRodzaju");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.Towar", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Rodzaj", "Rodzaj")
+                        .WithMany()
                         .HasForeignKey("RodzajIdRodzaju");
                 });
 #pragma warning restore 612, 618

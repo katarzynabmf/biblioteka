@@ -10,8 +10,8 @@ namespace Firma.PortalWWW.Controllers
 {
     public class SklepController : Controller
     {
-        private readonly FirmaContext _context; // tak tworzymy połączenie z bazą danych
-        public SklepController(FirmaContext context)
+        private readonly FirmaContextB _context; // tak tworzymy połączenie z bazą danych
+        public SklepController(FirmaContextB context)
         {
             _context = context; // tu inicjalizujemy baze danych
         }
@@ -48,6 +48,13 @@ namespace Firma.PortalWWW.Controllers
                 select towar // wybieramy stronę
                 ).ToList();
 
+            ViewBag.ModelProdukty2 =
+               (
+               from produkt in _context.Produkt2 // dla każdej strony z bazy danych stron
+               orderby produkt.IdProduktu2 // posortowanej względem pozycji
+               select produkt // wybieramy stronę
+               ).ToList();
+
 
             //przy pierwszym uruchomieniu sklepu nie ma wybranego rodzaju więc pod rodzaj podstawimy pierwszy rodzaj z bazy danych
             if (id == null)
@@ -56,7 +63,7 @@ namespace Firma.PortalWWW.Controllers
                 id = pierwszy.IdRodzaju;
             }
             //do widoku przekazuję wszytskie towary danego rodzaju ktróego mamy id asynchronicznie
-            return View(await _context.Towar.Where(item => item.IdRodzaju == id).ToListAsync());
+            return View(await _context.Produkt2.Where(item => item.IdRodzaju == id).ToListAsync());
         }
 
         //funkcja zwraca do widoku towar o id danym jako parametr
@@ -64,7 +71,7 @@ namespace Firma.PortalWWW.Controllers
         public async Task<IActionResult> Szczegoly(int id)
         {
             ViewBag.Rodzaje = await _context.Rodzaj.ToListAsync();
-            return View(await _context.Towar.Where(t => t.IdTowaru == id).FirstOrDefaultAsync());
+            return View(await _context.Produkt2.Where(t => t.IdProduktu2 == id).FirstOrDefaultAsync());
         }
     }
 }
